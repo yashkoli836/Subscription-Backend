@@ -4,46 +4,46 @@ import mongoose from "mongoose";
 
 const subscriptionSchema = new mongoose.Schema({
     name:{
-        type:String,
+        type: String,
         required:[true, 'Name is required'],
         trim: true,
         minLength: 2,
         maxLength: 100,
     },
     price:{
-        type:Number,
+        type: Number,
         required:[true, 'Price is required'],
         min: [0, 'Price must be greater than 0'],
         max: [1000, 'Price must be less than 1000'],
 
     },
     currency:{
-        type:String,
+        type: String,
         enum: ['USD', 'EUR', 'GBP', 'INR'],
         default: 'INR',    
     },
     frequency:{
-        type:String,
+        type: String,
         enum: ['Daily', 'Weekly', 'Monthly', 'Yearly'],
         default: 'Monthly',
     },
     category:{
-        type:String,
+        type: String,
         enum:['sports', 'music', 'movies', 'news', 'other'],
         required:[true, 'Category is required'],
     },
-    paymentMedthod:{
-        type:String,
-        required:[true, 'Payment method is required'],
+    paymentMethod:{
+        type: String,
+        required:true,
         trim:true,
     },
     status:{
-        type:String,
+        type: String,
         enum: ['active', 'cancelled','expired'],
         default: 'active',
     },
     startDate:{
-        type:Date,
+        type: Date,
         default: Date.now,
         requird:true,
         validate: {
@@ -54,7 +54,7 @@ const subscriptionSchema = new mongoose.Schema({
         }
     },
     renewalDate:{
-        type:Date,
+        type: Date,
         requird:true,
         validate: {
             validator: function (value) {
